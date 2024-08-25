@@ -11,7 +11,7 @@ function Home() {
   async function gettasks() {
     try {
       const { data } = await getTask_();
-
+    console.log(data)
       dispatch(getTasks(data.Tasks));
     } catch (err) {
       console.log("gettasks ---err", err);

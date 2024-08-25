@@ -1,6 +1,7 @@
 import axios from "axios";
-const API=axios.create({baseURL:process.env.BACKEND_URL})
+const API=axios.create({baseURL:"http://localhost:3000"})
 export  const signIn_=(formdata)=>{
+  
   return API.post('/user/signin',formdata, {withCredentials:true})
 }
 export  const signUp_=(formdata)=>{
@@ -15,7 +16,6 @@ export const  createTask_=(taskobj)=>{
     return API.post('/task/createtask',taskobj,{withCredentials:true});
 }
 export const  getTask_=()=>{
-   
     return API.get('/task/gettasks',{withCredentials:true});
 }
 export const  updateTask_=(id,update_obj)=>{

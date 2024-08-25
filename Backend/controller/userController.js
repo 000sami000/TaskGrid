@@ -68,7 +68,7 @@ const signIn = async (req, res, next) => {
     );
 
     let option = {
-      expires: new Date(Date.now() + 60 * 60 * 12),
+      expires: new Date(Date.now() + 60 * 60 * 12000),
       httpOnly: true,
       sameSite: "none",
       secure: true,

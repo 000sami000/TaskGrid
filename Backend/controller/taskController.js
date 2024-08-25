@@ -14,7 +14,7 @@ const createtask = async (req, res, next) => {
 const gettasks = async (req, res, next) => {
   try {
     const Tasks = await taskModel.find({ creatorId: req.USER_ID });
-    res.status(200).json({ Tasks });
+    return res.status(200).json({ Tasks });
   } catch (err) {
     return next(errorHandler(400, err._message));
   }
