@@ -1,36 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Singletask from "./Singletask";
-import { useDrop,useDrag } from "react-dnd";
+import { useDrop, useDrag } from "react-dnd";
 import { updateTask_ } from "../../api";
 import { updateTask } from "../../redux/slices/taskSlice";
 import { useDispatch } from "react-redux";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 function TaskBoard() {
-
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const { tasks } = useSelector((state) => state.TaskReducer);
-  console.log(tasks, "????");
 
-  
-  const handleDrop = async(task, status) => {
-    try{
-      console.log(";;;---",task)
-         console.log("????",task.tstatus)
-         if(task.tstatus!==status){
+  const handleDrop = async (task, status) => {
+    try {
+      if (task.tstatus !== status) {
+        const { data } = await updateTask_(task.id, { taskStatus: status });
 
-           const {data}=await updateTask_(task.id,{taskStatus:status})
-           console.log("updated---",data)
-           dispatch(updateTask(data.updatedTask))
-           toast("Task Status updated",{icon: '👏',duration:1000})
-          }
-    }catch(err){
-      console.log("create task error----",err?.response?.data.message);
-      // seterror(err.response.data.message)
-      toast(err?.response?.data.message,{duration:1000})
+        dispatch(updateTask(data.updatedTask));
+        toast("Task Status updated", { icon: "👏", duration: 1000 });
+      }
+    } catch (err) {
+      toast(err?.response?.data.message, { duration: 1000 });
     }
-  
-  
   };
 
   const [{ isOver: isOverToDo }, dropToDo] = useDrop(() => ({
@@ -59,18 +49,21 @@ function TaskBoard() {
 
   return (
     <div className="mx-[10%] my-[5%]">
-      <div  className="flex gap-5 justify-between">
-        <div ref={dropToDo}  className={`w-[100%] ${isOverToDo ? "bg-[#6f6f6f25]" : ""} transition-colors duration-200 pb-2 rounded-md`}>
+      <div className="flex gap-5 justify-between">
+        <div
+          ref={dropToDo}
+          className={`w-[100%] ${
+            isOverToDo ? "bg-[#6f6f6f25]" : ""
+          } transition-colors duration-200 pb-2 rounded-md`}
+        >
           <div className="bg-[#525252] mb-5 rounded-md w-[100%] py-[10px] text-center flex justify-center gap-4 text-[white]">
             TODO
             <span className="bg-[white] px-[7px] py-[0px] rounded-[100%] text-[black]">
-           
               {tasks.filter((task) => task.taskStatus === "TODO").length}
-          
             </span>
           </div>
           <div className="flex flex-col gap-2">
-          {tasks
+            {tasks
               .filter((task) => task.taskStatus === "TODO")
               .map((task) => (
                 <div key={task._id}>
@@ -80,43 +73,53 @@ function TaskBoard() {
           </div>
         </div>
 
-        <div ref={dropInProgress} className={`w-[100%] ${isOverInProgress ? "bg-[#6f6f6f25]" : ""} transition-colors duration-200 pb-2 rounded-md`}>
+        <div
+          ref={dropInProgress}
+          className={`w-[100%] ${
+            isOverInProgress ? "bg-[#6f6f6f25]" : ""
+          } transition-colors duration-200 pb-2 rounded-md`}
+        >
           <div className="bg-[#ee6ed9] mb-5  rounded-md w-[100%] py-[10px] text-center flex justify-center gap-4 text-[white]">
             IN PROGRESS
             <span className="bg-[white] px-[7px] py-[0px] rounded-[100%] text-[black]">
-            {tasks.filter((task) => task.taskStatus === "IN PROGRESS").length}
+              {tasks.filter((task) => task.taskStatus === "IN PROGRESS").length}
             </span>
           </div>
           <div className="flex flex-col gap-2">
-          {tasks
+            {tasks
               .filter((task) => task.taskStatus === "IN PROGRESS")
               .map((task) => (
                 <div key={task._id}>
                   <Singletask task={task} />
                 </div>
               ))}
-              </div>
+          </div>
         </div>
 
-        <div ref={dropClosed}  className={`w-[100%] ${isOverClosed ? "bg-[#6f6f6f25]" : ""} transition-colors duration-200 pb-2 rounded-md`}>
+        <div
+          ref={dropClosed}
+          className={`w-[100%] ${
+            isOverClosed ? "bg-[#6f6f6f25]" : ""
+          } transition-colors duration-200 pb-2 rounded-md`}
+        >
           <div className="bg-[#0fd56c] mb-5  rounded-md w-[100%] py-[10px] text-center flex justify-center gap-4 text-[white]">
             CLOSED
             <span className="bg-[white] px-[7px] py-[0px] rounded-[100%] text-[black]">
-            {tasks.filter((task) => task.taskStatus === "CLOSED").length}
+              {tasks.filter((task) => task.taskStatus === "CLOSED").length}
             </span>
           </div>
           <div className="flex flex-col gap-2">
-          {tasks
+            {tasks
               .filter((task) => task.taskStatus === "CLOSED")
               .map((task) => (
                 <div key={task._id}>
                   <Singletask task={task} />
                 </div>
               ))}
-              </div>
+          </div>
         </div>
       </div>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 }
