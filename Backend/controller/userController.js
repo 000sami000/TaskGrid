@@ -32,7 +32,7 @@ const signUp = async (req, res, next) => {
     await newUser.save();
     res.status(200).json({ message: "Sign up Successfull" });
   } catch (err) {
-    // console.log("object--",err)
+
     return next(errorHandler(400, err._message));
   }
 };
@@ -43,12 +43,12 @@ const signIn = async (req, res, next) => {
     const existingUser = await userModel.findOne({ email });
 
     if (!existingUser) {
-      console.log("/////--");
+
       return next(errorHandler(400, "User already exists"));
     }
 
     if (existingUser && existingUser.isblock) {
-      console.log("/////--");
+
 
       return next(errorHandler(400, "This user in blocked"));
     }
@@ -82,7 +82,7 @@ const signIn = async (req, res, next) => {
       access_token: token,
     });
   } catch (err) {
-    console.log(err);
+ 
     res.status(404).json({ message: err });
   }
 };

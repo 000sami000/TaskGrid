@@ -17,7 +17,7 @@ const isAuthorize = (req, res, next) => {
       return next(errorHandler(401, "Unauthorized Access"));
     }
   } catch (err) {
-    console.log("----err", err);
+
     return next(errorHandler(401, "Unauthorized Access"));
   }
 };
