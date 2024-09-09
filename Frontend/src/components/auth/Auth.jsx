@@ -63,7 +63,7 @@ function Auth() {
   };
   return (
     <div className="flex justify-center items-center w-full h-[80vh]  ">
-      <div className="w-[32%] border bg-gray-100 rounded-lg shadow-lg">
+      <div className="w-[32%] border bg-[#f3f3f3] rounded-lg shadow-lg">
         <div className="w-full h-full  p-4">
           <div className="w-full  flex justify-center p-1">
             <img src="auth_img.png" width={"60px"} />
@@ -121,7 +121,7 @@ function Auth() {
               ></Auth_input>
             )}
 
-            <div>
+            <div className="mt-2">
               {IsSignup ? (
                 <span>
                   Have an account ?
@@ -141,7 +141,7 @@ function Auth() {
                     onClick={() => {
                       setIsSignup(true);
                     }}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-[#ffffff84] p-[2px] rounded-md"
                   >
                     Sign up
                   </b>
@@ -155,7 +155,7 @@ function Auth() {
                   submit_handler();
                 }}
                 disabled={isloading}
-                className="bg-blue-600 rounded-md py-1 px-2"
+                className="bg-[white] rounded-md py-1 px-2"
               >
                 {IsSignup ? "Sign up" : "Sign in"}
               </button>

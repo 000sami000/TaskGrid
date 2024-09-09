@@ -41,8 +41,8 @@ function Singletask({ task }) {
         onMouseLeave={() => {
           setshow(false);
         }}
-        className={`bg-[#f9f7f7] shadow rounded-md px-2 py-2   cursor-pointer ${
-          isDragging ? "opacity-[50%]" : "opacity-[100%]"
+        className={`bg-[#f9f7f7]  rounded-md px-2 py-2  border-2   cursor-pointer ${
+          isDragging ? "opacity-[50%]" : "opacity-[100%] "
         }`}
       >
         <div key={_id} className="  flex items-center justify-between">

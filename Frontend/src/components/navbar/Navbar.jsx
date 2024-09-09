@@ -18,7 +18,7 @@ function Navbar() {
     }
   };
   return (
-    <div className=" absolute z-10 w-full bg-[#7676f7] px-2 py-3 ">
+    <div className=" absolute z-10 w-full bg-[#d6d6d659] px-2 py-3 ">
       <div className="flex justify-between items-center">
         <span
           className=" text-[25px] cursor-pointer text-[white]"
@@ -51,7 +51,7 @@ function Navbar() {
             <span className="text-[20px] text-[white]">{currentUser.name}</span>
             <span>
               <button
-                className="px-2 py-1 bg-[#eea827] rounded-md text-[white]"
+                className="px-2 py-1 bg-[#c6c6c6] rounded-md text-[white]"
                 onClick={handleLogout}
               >
                 Sign out

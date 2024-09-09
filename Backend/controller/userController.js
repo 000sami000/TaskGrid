@@ -91,8 +91,8 @@ const signOut = (req, res) => {
   res.clearCookie("access_token", {
     expires: new Date(Date.now()),
     httpOnly: true,
-    secure: true, // Ensure this matches how the cookie was set
-    sameSite: "none", // Ensure this matches how the cookie was set
+    secure: true, 
+    sameSite: "none", 
     path: "/",
   });
   res.status(200).json({ message: "Cookie cleared and user logged out" });
