@@ -44,7 +44,7 @@ const signIn = async (req, res, next) => {
 
     if (!existingUser) {
 
-      return next(errorHandler(400, "User already exists"));
+      return next(errorHandler(400, "User does not already exists"));
     }
 
     if (existingUser && existingUser.isblock) {
