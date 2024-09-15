@@ -19,6 +19,9 @@ const taskRoutes=require("./routes/tasksRoutes")
 const PORT=process.env.PORT || 3000;
 app.use("/user",userRoutes)
 app.use("/task",taskRoutes)
+app.get('/',(rreq,res)=>{
+   res.send('ok app is running')
+})
 try{
 
     mongoose.connect(process.env.CONNECTION_URL);
