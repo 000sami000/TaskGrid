@@ -24,7 +24,7 @@ app.get('/',(req,res)=>{
 })
 try{
 
-    mongoose.connect(process.env.CONNECTION_URL);
+    await mongoose.connect(process.env.CONNECTION_URL);
     app.listen(PORT,()=>{
          console.log(`Server running on port ${PORT}`)
         })
