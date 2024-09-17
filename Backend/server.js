@@ -19,7 +19,7 @@ const taskRoutes=require("./routes/tasksRoutes")
 const PORT=process.env.PORT || 3000;
 app.use("/user",userRoutes)
 app.use("/task",taskRoutes)
-app.get('/',(rreq,res)=>{
+app.get('/',(req,res)=>{
    res.send('ok app is running')
 })
 try{

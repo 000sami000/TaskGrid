@@ -51,7 +51,7 @@ function Navbar() {
             <span className="text-[20px] text-[white]">{currentUser.name}</span>
             <span>
               <button
-                className="px-2 py-1 bg-[#c6c6c6] rounded-md text-[white]"
+                className="px-2 py-1 bg-[#eea827] rounded-md text-[white]"
                 onClick={handleLogout}
               >
                 Sign out
