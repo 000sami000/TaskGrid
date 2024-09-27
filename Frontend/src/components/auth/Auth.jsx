@@ -50,7 +50,7 @@ function Auth() {
       window.location.reload();
     } catch (err) {
       setisloading(false);
-      seterror(err.response.data.message);
+      seterror(err?.response?.data.message);
     }
   };
 
