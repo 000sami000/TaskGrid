@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Singletask from "./Singletask";
 import { useDrop, useDrag } from "react-dnd";
 import { updateTask_ } from "../../api";
-import { updateTask } from "../../redux/slices/taskSlice";
+import { updateloading, updateTask } from "../../redux/slices/taskSlice";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 function TaskBoard() {
@@ -12,13 +12,16 @@ function TaskBoard() {
 
   const handleDrop = async (task, status) => {
     try {
+      dispatch(updateloading(true));
       if (task.tstatus !== status) {
         const { data } = await updateTask_(task.id, { taskStatus: status });
-
+        
         dispatch(updateTask(data.updatedTask));
+        dispatch(updateloading(false));
         toast("Task Status updated", { icon: "👏", duration: 1000 });
       }
     } catch (err) {
+      dispatch(updateloading(false));
       toast(err?.response?.data.message, { duration: 1000 });
     }
   };

@@ -6,6 +6,7 @@ import { deleteTask_ } from "../../api";
 import { deleteTasks } from "../../redux/slices/taskSlice";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import {updateloading} from "../../redux/slices/taskSlice"
 function Singletask({ task }) {
   const { taskName, _id, taskStatus, createdAt } = task;
   const dispatch = useDispatch();
@@ -21,11 +22,14 @@ function Singletask({ task }) {
 
   const deletetask = async () => {
     try {
+      dispatch(updateloading(true));
       const { data } = await deleteTask_(_id);
-
+      
       dispatch(deleteTasks(data.deletedTask));
+      dispatch(updateloading(false));
       toast("Deleted Successfully", { icon: "💀", duration: 1000 });
     } catch (err) {
+      dispatch(updateloading(false));
       toast(err.response.data.message, { icon: "👏", duration: 1000 });
       console.log("delete err----", err.response.data.message);
     }

@@ -6,14 +6,18 @@ import { getTask_ } from "../../api";
 import { getTasks } from "../../redux/slices/taskSlice";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import {updateloading} from "../../redux/slices/taskSlice"
 function Home() {
   const dispatch = useDispatch();
   async function gettasks() {
     try {
+      dispatch(updateloading(true));
       const { data } = await getTask_();
-    console.log(data)
+      console.log(data)
+      dispatch(updateloading(false));
       dispatch(getTasks(data.Tasks));
     } catch (err) {
+      dispatch(updateloading(false));
       console.log("gettasks ---err", err);
     }
   }

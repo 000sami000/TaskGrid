@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import { createTask } from "../../redux/slices/taskSlice";
 import { createTask_ } from "../../api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {updateloading} from "../../redux/slices/taskSlice"
 import toast, { Toaster } from "react-hot-toast";
+import Simpleloader from "../../Simpleloader";
 function CreateTask() {
+  const {loading}=useSelector((state) => state.TaskReducer)
   const dispatch = useDispatch();
   const [task, settask] = useState("");
   const createtask = async (task) => {
     try {
+      dispatch(updateloading(true));
       let { data } = await createTask_({ taskName: task });
 
       dispatch(createTask(data.newTask));
-
+      dispatch(updateloading(false))
       toast.success("Task created", { duration: 1000 });
     } catch (err) {
       toast(err?.response?.data.message, { duration: 1000 });
+      dispatch(updateloading(false))
     }
   };
-
+console.log(loading,"loading")
   return (
     <>
       <div className="flex flex-col gap-2 justify-center sm:flex-row items-center">
@@ -39,6 +44,10 @@ function CreateTask() {
         >
           Create
         </button>
+        {
+          loading&&
+        <Simpleloader/>
+        }
       </div>
       <Toaster />
     </>
