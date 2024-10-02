@@ -28,6 +28,12 @@ function Auth() {
 
       await signUp_(Formdata);
       setisloading(false);
+      setFormdata({
+        name: "",
+        email: "",
+        password: "",
+        confirmpassword: "",
+        })
       setIsSignup(false);
       seterror(null);
     } catch (err) {
@@ -63,7 +69,7 @@ function Auth() {
   };
   return (
     <div className="flex justify-center items-center w-full h-[80vh]  ">
-      <div className="w-[32%] border bg-[#f3f3f3] rounded-lg shadow-lg">
+      <div className={`w-[32%] border bg-[#f3f3f3] rounded-lg shadow-lg ${IsSignup?"mt-[10%]":""}`}>
         <div className="w-full h-full  p-4">
           <div className="w-full  flex justify-center p-1">
             <img src="auth_img.png" width={"60px"} />
@@ -93,6 +99,7 @@ function Auth() {
                 placeholder={"Name"}
                 autoFocus
                 label={"Name"}
+                value={Formdata.name}
               ></Auth_input>
             )}
             <Auth_input
@@ -101,6 +108,7 @@ function Auth() {
               name={"email"}
               placeholder={"Enter your Email"}
               label={"Email"}
+              value={Formdata.email}
             ></Auth_input>
             <Auth_input
               handlechange={handlechange}
@@ -109,6 +117,7 @@ function Auth() {
               placeholder={"Enter the Password"}
               autoFocus
               label={"Password"}
+              value={Formdata.password}
             ></Auth_input>
             {IsSignup && (
               <Auth_input
@@ -118,6 +127,7 @@ function Auth() {
                 placeholder={"Enter Password again"}
                 autoFocus
                 label={"Confirm Password"}
+                value={Formdata.confirmpassword}
               ></Auth_input>
             )}
 
@@ -127,6 +137,12 @@ function Auth() {
                   Have an account ?
                   <b
                     onClick={() => {
+                      setFormdata({
+                      name: "",
+                      email: "",
+                      password: "",
+                      confirmpassword: "",
+                      });
                       setIsSignup(false);
                     }}
                     className="cursor-pointer"
@@ -139,6 +155,12 @@ function Auth() {
                   Don't have an account ?
                   <b
                     onClick={() => {
+                      setFormdata({
+                      name: "",
+                      email: "",
+                      password: "",
+                      confirmpassword: "",
+                      });
                       setIsSignup(true);
                     }}
                     className="cursor-pointer hover:bg-[#ffffff84] p-[2px] rounded-md"
