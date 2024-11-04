@@ -3,8 +3,9 @@
 TaskGrid is a task management application designed to help users organize and prioritize tasks efficiently.
 It features a user-friendly drag-and-drop interface to manage tasks across different stages—To Do, In Progress, and Completed—making task tracking easy and intuitive.
 
-![Screenshot (15)](https://github.com/user-attachments/assets/2e231a68-9250-4a1f-a308-330b07770594)
-![Screenshot (16)](https://github.com/user-attachments/assets/c5c9aab3-aee3-4f3d-99df-e9c26bf18530)
+![Screenshot (15)](https://github.com/user-attachments/assets/f26361d6-72a5-4f5c-b009-7444e1297f6c)
+
+![Screenshot (16)](https://github.com/user-attachments/assets/75ee0712-8ce8-4e31-a368-aab25b11f4a2)
 
 
 https://github.com/user-attachments/assets/1f21f9c8-73cc-4ca5-955c-959c2c4272c5
